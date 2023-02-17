@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api:
+    build: /docker/
+    ports:
+      - "8000:8000"
+  db:
+    image: postgres:15
+    container_name: pond_postgresql
+    restart: always
+    ports:
+      - 5400:5400
+    environment:
+      POSTGRES_DB: frog
+      POSTGRES_USER: frog
+      POSTGRES_PASSWORD: frog!123
+    volumes:
+      - ./database/postgresql/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
