@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  questdb:
+    image: questdb/questdb:7.0.0
+    container_name: pond_questdb
+    restart: always
+    ports:
+      - 9000:9000 #REST API and Web Console
+      - 9009:9009 #InfluxDB line protocol
+      - 8812:8812 #Postgres wire protocol
+      - 9003:9003 #Min health server and Prometheus metrics
+    volumes:
+      - ./volumins/questdb:/root/.questdb
+  questdb_setup:
+    image: alpine/curl:latest
+    restart: on-failure
+    depends_on:
+      - questdb
+    volumes:
+      - ./../resources:/resources
+    command: ./resources/scripts/questdb_setup.sh questdb:9000
