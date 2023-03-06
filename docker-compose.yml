@@ -1,19 +1,16 @@
 version: '3'
 
 services:
-  api:
-    build: /docker/
+  rest_api:
+    container_name: frog
+    build: ./frog/docker
     ports:
       - "8000:8000"
-  db:
-    image: postgres:15
-    container_name: pond_postgresql
-    restart: always
-    ports:
-      - 5400:5400
-    environment:
-      POSTGRES_DB: frog
-      POSTGRES_USER: frog
-      POSTGRES_PASSWORD: frog!123
-    volumes:
-      - ./database/postgresql/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+  postgresql:
+    extends:
+      file: ./database/postgresql/docker/docker-compose.yml
+      service: postgresql
+  questdb:
+    extends:
+      file: ./database/questdb/docker/docker-compose.yml
+      service: questdb
