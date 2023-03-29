@@ -1,5 +1,4 @@
 FROM python:alpine3.16
-WORKDIR frog/app
 
 RUN apk update && \
     apk add git && \
