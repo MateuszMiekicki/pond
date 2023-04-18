@@ -13,3 +13,7 @@ services:
     extends:
       file: ./questdb/docker/docker-compose.yml
       service: questdb
+  questdb_setup:
+    extends:
+      file: ./questdb/docker/docker-compose.yml
+      service: questdb_setup
