@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  postgresql:
+    extends:
+      file: ./postgresql/docker/docker-compose.yml
+      service: postgresql
+  pgadmin:
+    extends:
+      file: ./postgresql/docker/docker-compose.yml
+      service: pgadmin
+  questdb:
+    extends:
+      file: ./questdb/docker/docker-compose.yml
+      service: questdb

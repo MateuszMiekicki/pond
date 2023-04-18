@@ -11,9 +11,13 @@ services:
       - questdb
   postgresql:
     extends:
-      file: ./database/postgresql/docker/docker-compose.yml
+      file: ./databases/docker-compose.yml
       service: postgresql
+  pgadmin:
+    extends:
+      file: ./databases/docker-compose.yml
+      service: pgadmin
   questdb:
     extends:
-      file: ./database/questdb/docker/docker-compose.yml
+      file: ./databases/docker-compose.yml
       service: questdb

@@ -20,3 +20,17 @@ docker-compose up --build --force-recreate --no-deps -d
 #     --build             Build images before starting containers.
 #
 ```
+## What you build
+### Frog
+If you run docker-compose at the root of the folder, you will build a Web Server for with databases(PostgreSQL and QuestDB). If you run docker-compose in the toad folder, you will only build the server responsible for the MQTT broker.
+```
+.
+├── frog
+├── databases
+│   ├── PostgreSQL
+│   │   └── PGAdmin
+│   └── QuestDB
+│       └── REST API and Web Console
+└── toad
+    └── MQTT broker
+```
