@@ -11,7 +11,10 @@ services:
       - 8812:8812 #Postgres wire protocol
       - 9003:9003 #Min health server and Prometheus metrics
     volumes:
-      - ./volumins/questdb:/root/.questdb
+      - ./../resources/questdb/conf/server.conf:/root/.questdb/conf/server.conf
+      - ./../resources/questdb/conf/log.conf:/root/.questdb/conf/log.conf
+      - ./../resources/questdb/conf/auth.txt:/root/.questdb/conf/auth.txt
+      - ./volumins/questdb/db:/root/.questdb/db
   questdb_setup:
     image: alpine/curl:latest
     restart: on-failure
