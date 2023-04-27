@@ -3,9 +3,10 @@ version: '3'
 services:
   rest_api:
     container_name: frog
+    restart: always
     build: ./frog/docker
     ports:
-      - "8000:8000"
+      - 8000:8000
     depends_on:
       - postgresql
       - questdb
@@ -24,4 +25,6 @@ services:
   questdb_setup:
     extends:
       file: ./databases/docker-compose.yml
-      service: questdb
+      service: questdb_setup
+    depends_on:
+      - questdb
