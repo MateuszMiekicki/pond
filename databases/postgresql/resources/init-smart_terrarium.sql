@@ -4,8 +4,8 @@ CREATE TABLE "role" (
     PRIMARY KEY (id)
 );
 INSERT INTO "role"
-VALUES (1, 'admin'),
-    (2, 'user');
+VALUES (1, 'owner'),
+    (2, 'guest');
 CREATE TABLE "user" (
     id SERIAL,
     role_id SERIAL NOT NULL,
@@ -28,4 +28,13 @@ CREATE TABLE sensor (
     name VARCHAR,
     PRIMARY KEY (id),
     CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
+);
+
+CREATE TABLE sensor_measurement_range (
+    id SERIAL,
+    sensor_id SERIAL NOT NULL,
+    min_value NUMERIC NOT NULL,
+    max_value NUMERIC NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT sensor_fk FOREIGN KEY (sensor_id) REFERENCES sensor (id)
 );

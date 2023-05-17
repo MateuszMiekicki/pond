@@ -1,5 +1,7 @@
 version: '3'
-
+networks:
+  moja_siec:
+    external: true
 services:
   postgresql:
     extends:
@@ -14,6 +16,8 @@ services:
       file: ./questdb/docker/docker-compose.yml
       service: questdb
   questdb_setup:
+    depends_on:
+      - questdb
     extends:
       file: ./questdb/docker/docker-compose.yml
       service: questdb_setup

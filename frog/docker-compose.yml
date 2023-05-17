@@ -1,0 +1,12 @@
+version: '3'
+networks:
+  moja_siec:
+    external: true
+services:
+  frog:
+    restart: always
+    build: ./docker
+    ports:
+      - 8000:8000
+    networks:
+      - moja_siec

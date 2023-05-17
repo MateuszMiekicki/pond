@@ -1,0 +1,14 @@
+version: '3'
+
+networks:
+  moja_siec:
+    external: true
+
+services:
+  toad:
+    restart: always
+    build: ./docker
+    ports:
+      - 1883:1883
+    networks:
+      - moja_siec

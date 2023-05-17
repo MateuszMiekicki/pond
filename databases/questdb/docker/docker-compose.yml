@@ -1,9 +1,11 @@
 version: '3'
-
+networks:
+  moja_siec:
+    external: true
 services:
   questdb:
     image: questdb/questdb:7.0.0
-    container_name: pond_questdb
+    container_name: questdb
     restart: always
     ports:
       - 9000:9000 #REST API and Web Console
@@ -15,9 +17,13 @@ services:
       - ./../resources/questdb/conf/log.conf:/root/.questdb/conf/log.conf
       - ./../resources/questdb/conf/auth.txt:/root/.questdb/conf/auth.txt
       - ./volumins/questdb/db:/root/.questdb/db
+    networks:
+      - moja_siec
   questdb_setup:
     image: alpine/curl:latest
     restart: on-failure
+    networks:
+      - moja_siec
     depends_on:
       - questdb
     volumes:
