@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  moja_siec:
+  pond_network:
     external: true
 services:
   questdb:
@@ -18,12 +18,12 @@ services:
       - ./../resources/questdb/conf/auth.txt:/root/.questdb/conf/auth.txt
       - ./volumes/questdb/db:/root/.questdb/db
     networks:
-      - moja_siec
+      - pond_network
   questdb_setup:
     image: alpine/curl:latest
     restart: on-failure
     networks:
-      - moja_siec
+      - pond_network
     depends_on:
       - questdb
     volumes:

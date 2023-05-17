@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  moja_siec:
+  pond_network:
     external: true
 services:
   frog:
@@ -9,4 +9,4 @@ services:
     ports:
       - 8000:8000
     networks:
-      - moja_siec
+      - pond_network

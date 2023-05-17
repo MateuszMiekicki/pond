@@ -7,11 +7,13 @@ A repository created specifically for storing Infrastructure as Code (IaC) for p
 A python script - run.py - is used to run the services. The script builds a container, single. If you choose frog, you don't build the base, without it forgo doesn't work without proper configuration.
 ### tldr;
 ```bash
+pip install docker
 python run.py #build and run all
 python run.py --run all --force-rebuild all --remove-volumes #clear, rebuild and run all
 ```
 ### Examples
 ```bash
+pip install docker
 python run.py #default target is run - 'all'
 python run.py --target toad databases --force-rebuild #force rebuild 'toad' and run 'toad' and 'database'
 python run.py --remove-volumes #remove all volumes in pond dir and run target 'all'

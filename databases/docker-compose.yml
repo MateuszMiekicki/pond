@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  moja_siec:
+  pond_network:
     external: true
 services:
   postgresql:

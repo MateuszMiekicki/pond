@@ -2,6 +2,7 @@ import sys
 import os
 import argparse
 import shutil
+import docker
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -72,6 +73,8 @@ FORCE_REBUILD_TARGETS = {
 
 
 def __check_targets(targets: list, predefined_targets: dict):
+    if targets is None:
+        return False
     for target in targets:
         if target not in predefined_targets.keys():
             print(f'Unknown target: {target}')
@@ -117,30 +120,38 @@ def remove_volumes():
                 print(f"Remove directory: {dir_path}")
 
 
+def create_network_if_not_exists(network_name):
+    client = docker.from_env()
+    existing_networks = client.networks.list(names=[network_name])
+
+    if not existing_networks:
+        client.networks.create(network_name)
+        print(f'Network "{network_name}" created.')
+    else:
+        print(f'Network "{network_name}" already exists.')
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--run', dest='targets',
                         help='select target to run', default=['all'], nargs='+')
-    parser.add_argument('--force-rebuild', dest='force_rebuild',
+    parser.add_argument('--force-rebuild', dest='force_rebuild_targets',
                         help='select target to run', nargs='+')
     parser.add_argument('--remove-volumes', dest='remove_volumes',
                         help='remove all volumes in dir', action='store_true')
     args, unknown = parser.parse_known_args()
-    print(args.targets)
-    print(args.force_rebuild)
     if unknown:
         print("unknown command: ", unknown)
         return
-    if args.targets is not None and not preprocessing_runnable_targets(args.targets):
-        return
-    if args.force_rebuild is not None and not preprocessing_force_rebuild_targets(args.force_rebuild):
-        return
+    create_network_if_not_exists('pond_network')
     if args.remove_volumes:
         remove_volumes()
-    for target in args.force_rebuild:
-        force_rebuild(target)
-    for target in args.targets:
-        run(target)
+    if args.force_rebuild_targets is not None and preprocessing_force_rebuild_targets(args.force_rebuild_targets):
+        for target in args.force_rebuild_targets:
+            force_rebuild(target)
+    if args.targets is not None and preprocessing_runnable_targets(args.targets):
+        for target in args.targets:
+            run(target)
 
 
 if __name__ == '__main__':

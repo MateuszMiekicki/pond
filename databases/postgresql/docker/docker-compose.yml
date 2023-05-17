@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  moja_siec:
+  pond_network:
     external: true
 services:
   postgresql:
@@ -17,7 +17,7 @@ services:
       - ./../resources/init-smart_terrarium.sql:/docker-entrypoint-initdb.d/init-smart_terrarium.sql
       - ./volumes/postgres-data:/var/lib/postgresql/data
     networks:
-      - moja_siec
+      - pond_network
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4
@@ -31,4 +31,4 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: 5050
     networks:
-      - moja_siec
+      - pond_network
