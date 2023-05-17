@@ -4,21 +4,17 @@ A repository created specifically for storing Infrastructure as Code (IaC) for p
 * [frog]([https://linktodocumentation](https://github.com/MateuszMiekicki/frog))
 
 ## Usage
-The following command runs two tasks. The first task builds and deploys the database from the init step. The second task builds the API image according to the `Dockerfile` in the docker dir.
-The API is available at 8080
+A python script - run.py - is used to run the services. The script builds a container, single. If you choose frog, you don't build the base, without it forgo doesn't work without proper configuration.
+### tldr;
 ```bash
-# if you want to update the versions
-docker-compose build --no-cache
-docker-compose up --build --force-recreate --no-deps -d
-# Options:
-#     -d, --detach        Detached mode: Run containers in the background,
-#                         print new container names. Incompatible with
-#                         --abort-on-container-exit.
-#     --no-deps           Don't start linked services.
-#     --force-recreate    Recreate containers even if their configuration
-#                         and image haven't changed.
-#     --build             Build images before starting containers.
-#
+python run.py #build and run all
+python run.py --run all --force-rebuild all --remove-volumes #clear, rebuild and run all
+```
+### Examples
+```bash
+python run.py #default target is run - 'all'
+python run.py --target toad databases --force-rebuild #force rebuild 'toad' and run 'toad' and 'database'
+python run.py --remove-volumes #remove all volumes in pond dir and run target 'all'
 ```
 ## What you build
 ### Frog

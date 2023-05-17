@@ -16,7 +16,7 @@ services:
       - ./../resources/questdb/conf/server.conf:/root/.questdb/conf/server.conf
       - ./../resources/questdb/conf/log.conf:/root/.questdb/conf/log.conf
       - ./../resources/questdb/conf/auth.txt:/root/.questdb/conf/auth.txt
-      - ./volumins/questdb/db:/root/.questdb/db
+      - ./volumes/questdb/db:/root/.questdb/db
     networks:
       - moja_siec
   questdb_setup:
