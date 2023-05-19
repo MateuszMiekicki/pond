@@ -25,11 +25,11 @@ CREATE TABLE device (
 CREATE TABLE sensor (
     id SERIAL,
     device_id SERIAL NOT NULL,
+    pin INTEGER NOT NULL,
     name VARCHAR,
     PRIMARY KEY (id),
     CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
 );
-
 CREATE TABLE sensor_measurement_range (
     id SERIAL,
     sensor_id SERIAL NOT NULL,
