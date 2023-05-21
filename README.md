@@ -15,7 +15,7 @@ python run.py --run all --force-rebuild all --remove-volumes #clear, rebuild and
 ```bash
 pip install docker
 python run.py #default target is run - 'all'
-python run.py --target toad databases --force-rebuild #force rebuild 'toad' and run 'toad' and 'database'
+python run.py --run toad databases --force-rebuild #force rebuild 'toad' and 'databases' and run both
 python run.py --remove-volumes #remove all volumes in pond dir and run target 'all'
 ```
 ## What you build
