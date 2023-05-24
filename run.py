@@ -8,7 +8,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def __prepare_docker_compose_command(path: str, command: str = 'up -d', file: str = 'docker-compose.yml'):
-    return f'docker-compose -f {SCRIPT_DIR}/{path}/{file} {command}'
+    return f'docker-compose -f "{SCRIPT_DIR}/{path}/{file}" {command}'
 
 
 def __run_container(path: str):
