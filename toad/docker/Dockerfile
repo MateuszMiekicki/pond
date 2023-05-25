@@ -7,6 +7,4 @@ RUN mkdir -p toad/build
 RUN cd toad/build && conan install ..
 RUN cd toad && cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Release
 RUN cd toad && cmake --build build --parallel 4
-RUN cd toad && cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Release
-RUN cd toad && cmake --build build --parallel 4
 CMD ["supervisord", "-c", "./toad/.cicd/supervisord.conf"]
