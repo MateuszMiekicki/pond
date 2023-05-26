@@ -8,7 +8,7 @@ VALUES (1, 'owner'),
     (2, 'guest');
 CREATE TABLE "user" (
     id SERIAL,
-    role_id SERIAL NOT NULL,
+    role_id SERIAL,
     email VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
     PRIMARY KEY (id),
@@ -16,7 +16,7 @@ CREATE TABLE "user" (
 );
 CREATE TABLE device (
     id SERIAL,
-    user_id SERIAL NOT NULL,
+    user_id SERIAL,
     key VARCHAR NOT NULL UNIQUE,
     name VARCHAR,
     PRIMARY KEY (id),
@@ -24,17 +24,12 @@ CREATE TABLE device (
 );
 CREATE TABLE sensor (
     id SERIAL,
-    device_id SERIAL NOT NULL,
+    device_id SERIAL,
     pin INTEGER NOT NULL,
     name VARCHAR,
-    PRIMARY KEY (id),
-    CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
-);
-CREATE TABLE sensor_measurement_range (
-    id SERIAL,
-    sensor_id SERIAL NOT NULL,
+    type VARCHAR NOT NULL,
     min_value NUMERIC NOT NULL,
     max_value NUMERIC NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT sensor_fk FOREIGN KEY (sensor_id) REFERENCES sensor (id)
+    CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
 );
