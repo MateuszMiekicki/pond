@@ -31,5 +31,6 @@ CREATE TABLE sensor (
     min_value NUMERIC NOT NULL,
     max_value NUMERIC NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
+    CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id),
+    CONSTRAINT constraint_device_pin UNIQUE (device_id, pin)
 );
