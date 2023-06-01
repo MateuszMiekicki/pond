@@ -30,5 +30,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: 5050
+      PGADMIN_SERVER_JSON_FILE: ./../resources/servers.json
+    volumes:
+      - ./../resources/servers.json:/pgadmin4/servers.json
+      - ./../resources/pgpassfile.config:/pgadmin4/pgpassfile.config
     networks:
       - pond_network
