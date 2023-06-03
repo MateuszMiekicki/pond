@@ -131,8 +131,15 @@ def create_network_if_not_exists(network_name):
         print(f'Network "{network_name}" already exists.')
 
 
+def update_repo():
+    print('Updating repo...')
+    os.system(f'git -C {SCRIPT_DIR} pull --rebase')
+
+
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--update-repo', dest='update_repo',
+                        action='store_true', default=True, help='pull and rebase pond repo')
     parser.add_argument('--run', dest='targets',
                         help='select target to run', default=['all'], nargs='+')
     parser.add_argument('--force-rebuild', dest='force_rebuild_targets',
@@ -143,6 +150,8 @@ def main():
     if unknown:
         print("unknown command: ", unknown)
         return
+    if args.update_repo:
+        update_repo()
     create_network_if_not_exists('pond_network')
     if args.remove_volumes:
         remove_volumes()
