@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS sensor_data (
     timestamp TIMESTAMP,
-    device_id INT,
-    sensor_id INT,
+    mac_address STRING,
+    pin_number INT,
     value DOUBLE
 ) timestamp(timestamp);

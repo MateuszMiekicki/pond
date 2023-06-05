@@ -1,23 +1,13 @@
-CREATE TABLE "role" (
-    id SERIAL,
-    role VARCHAR NOT NULL UNIQUE,
-    PRIMARY KEY (id)
-);
-INSERT INTO "role"
-VALUES (1, 'owner'),
-    (2, 'guest');
 CREATE TABLE "user" (
     id SERIAL,
-    role_id SERIAL,
     email VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT role_fk FOREIGN KEY (role_id) REFERENCES "role" (id)
+    PRIMARY KEY (id)
 );
 CREATE TABLE device (
     id SERIAL,
     user_id SERIAL,
-    key VARCHAR NOT NULL UNIQUE,
+    mac_address VARCHAR NOT NULL UNIQUE,
     name VARCHAR,
     PRIMARY KEY (id),
     CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES "user" (id)
@@ -25,12 +15,12 @@ CREATE TABLE device (
 CREATE TABLE sensor (
     id SERIAL,
     device_id SERIAL,
-    pin INTEGER NOT NULL,
+    pin_number INTEGER NOT NULL,
     name VARCHAR,
     type VARCHAR NOT NULL,
     min_value NUMERIC NOT NULL,
     max_value NUMERIC NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id),
-    CONSTRAINT constraint_device_pin UNIQUE (device_id, pin)
+    CONSTRAINT constraint_device_pin_number UNIQUE (device_id, pin_number)
 );
