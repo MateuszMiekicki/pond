@@ -11,5 +11,6 @@ services:
     ports:
       - 1883:1883
       - 6666:6666
+      - 5570:5570
     networks:
       - pond_network
