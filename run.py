@@ -20,6 +20,11 @@ def run_frog():
     __run_container('frog')
 
 
+def run_smtp():
+    print('Running smtp...')
+    __run_container('smtp')
+
+
 def run_databases():
     print('Running databases...')
     __run_container('databases')
@@ -33,6 +38,7 @@ def run_toad():
 def run_all():
     print('Running all...')
     run_databases()
+    run_smtp()
     run_frog()
     run_toad()
 
@@ -41,6 +47,7 @@ RUNNABLE_TARGETS = {
     'frog': run_frog,
     'databases': run_databases,
     'toad': run_toad,
+    'smtp': run_smtp,
     'all': run_all
 }
 
