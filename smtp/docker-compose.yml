@@ -9,14 +9,14 @@ services:
     restart: always
     ports:
       # Change the number before : to the port the web interface should be accessible on
-      - '5000:80'
-      # Change the number before : to the port the SMTP server should be accessible on
-      - '25:25'
-      # Change the number before : to the port the IMAP server should be accessible on
-      - '143:143'
+      - 2500:80
+      # # Change the number before : to the port the SMTP server should be accessible on
+      - 25:25
+      # # Change the number before : to the port the IMAP server should be accessible on
+      - 143:143
     volumes:
       # This is where smtp4dev stores the database..
-      - smtp4dev-data:/smtp4dev
+      - ./volumes/smtp4dev:/smtp4dev
     environment:
       # Uncomment to customise these settings
 
@@ -24,12 +24,12 @@ services:
       #- ServerOptions__BasePath=/smtp4dev
 
       #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
-      - ServerOptions__HostName=smtp4dev
+      # - ServerOptions__HostName=smtp
       #Locks settings from being changed by user via web interface
       #- ServerOptions__LockSettings=true
 
       #Specifies the path where the database will be stored relative to APPDATA env var on Windows or XDG_CONFIG_HOME on non-Windows. Specify "" to use an in memory database.
-      #- ServerOptions__Database=database.db
+      - ServerOptions__Database=smtp.db
 
       #Specifies the number of messages to keep
       #- ServerOptions__NumberOfMessagesToKeep=100
@@ -38,10 +38,10 @@ services:
       #- ServerOptions__NumberOfSessionsToKeep=100
 
       #Specifies the TLS mode to use. None=Off. StartTls=On demand if client supports STARTTLS. ImplicitTls=TLS as soon as connection is established.
-      #- ServerOptions__TlsMode=None
+      - ServerOptions__TlsMode=StartTls
 
       #Specifies the TLS certificate to use if TLS is enabled/requested. Specify "" to use an auto-generated self-signed certificate (then see console output on first startup)
-      #- ServerOptions__TlsCertificate=
+      # - ServerOptions__TlsCertificate=""
 
       #Sets the name of the SMTP server that will be used to relay messages or "" if messages should not be relayed
       #- RelayOptions__SmtpServer=
@@ -64,6 +64,3 @@ services:
       #"ServerOptions__ImapPort"=143
     networks:
       - pond_network
-
-volumes:
-  smtp4dev-data:
