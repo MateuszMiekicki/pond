@@ -36,7 +36,7 @@ CREATE TABLE visitor (
     id SERIAL,
     user_id SERIAL,
     device_id SERIAL,
-    name VARCHAR NOT NULL,
+    name VARCHAR,
     PRIMARY KEY (id),
     CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES "user" (id),
     CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
@@ -53,15 +53,6 @@ CREATE TABLE alert (
     CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id),
     CONSTRAINT sensor_fk FOREIGN KEY (sensor_id) REFERENCES sensor (id)
 );
-CREATE TABLE general_alert (
-    id SERIAL,
-    device_id SERIAL,
-    date TIMESTAMP NOT NULL,
-    description VARCHAR NOT NULL,
-    served BOOLEAN NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id)
-);
 CREATE TABLE pet (
     id SERIAL,
     name VARCHAR NOT NULL,
@@ -72,6 +63,5 @@ CREATE TABLE pet_habitat (
     id SERIAL,
     pet_id SERIAL,
     PRIMARY KEY (id),
-    CONSTRAINT pet_fk FOREIGN KEY (pet_id) REFERENCES pet (id),
-    CONSTRAINT sensor_fk FOREIGN KEY (sensor_id) REFERENCES sensor (id)
+    CONSTRAINT pet_fk FOREIGN KEY (pet_id) REFERENCES pet (id)
 );
