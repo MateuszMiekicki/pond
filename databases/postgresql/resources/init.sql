@@ -44,13 +44,14 @@ CREATE TABLE visitor (
 CREATE TABLE alert (
     id SERIAL,
     device_id SERIAL,
-    sensor_id SERIAL,
+    sensor_id INTEGER,
     date TIMESTAMP NOT NULL,
     description VARCHAR NOT NULL,
+    priority INTEGER NOT NULL,
     served BOOLEAN NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT device_fk FOREIGN KEY (device_id) REFERENCES device (id),
-    CONSTRAINT sensor_fk FOREIGN KEY (sensor_id) REFERENCES sensor (id),
+    CONSTRAINT sensor_fk FOREIGN KEY (sensor_id) REFERENCES sensor (id)
 );
 CREATE TABLE general_alert (
     id SERIAL,
