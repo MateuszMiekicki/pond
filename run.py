@@ -54,7 +54,7 @@ RUNNABLE_TARGETS = {
 
 def __force_rebuild(path: str):
     os.system(__prepare_docker_compose_command(
-        path, 'build --no-cache'))
+        path, 'build --progress=plain --no-cache'))
 
 
 def force_rebuild_frog():
