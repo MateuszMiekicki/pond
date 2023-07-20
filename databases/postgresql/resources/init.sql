@@ -62,6 +62,7 @@ CREATE TABLE pet (
 CREATE TABLE pet_habitat (
     id SERIAL,
     pet_id SERIAL,
+    information JSON NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT pet_fk FOREIGN KEY (pet_id) REFERENCES pet (id)
 );
