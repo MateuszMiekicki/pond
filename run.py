@@ -15,6 +15,34 @@ def __run_container(path: str):
     os.system(__prepare_docker_compose_command(path))
 
 
+def __kill_all_containers():
+    # https://stackoverflow.com/questions/28339469/which-one-should-i-use-docker-kill-or-docker-stop
+    print('Killing all containers...')
+    os.system('docker kill $(docker ps -q)')
+
+
+def __remove_all_containers():
+    print('Removing all containers...')
+    os.system('docker rm -f $(docker ps -a -q)')
+
+
+def __remove_all_images():
+    print('Removing all images...')
+    os.system('docker rmi -f $(docker images -a -q)')
+
+
+def __remove_all_trash():
+    print('Removing all trash...')
+    os.system('docker system prune -a -f')
+
+
+def remove_all():
+    __kill_all_containers()
+    __remove_all_containers()
+    __remove_all_images()
+    __remove_all_trash()
+
+
 def run_frog():
     print('Running frog...')
     __run_container('frog')
@@ -53,8 +81,9 @@ RUNNABLE_TARGETS = {
 
 
 def __force_rebuild(path: str):
+    # docker command force clean rebuild of image
     os.system(__prepare_docker_compose_command(
-        path, 'build --progress=plain --no-cache'))
+        path, 'build --pull --progress=plain --no-cache'))
 
 
 def force_rebuild_frog():
@@ -145,6 +174,8 @@ def update_repo():
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--remove-all', dest='remove_all',
+                        action='store_true', default=False, help='remove all containers, images and trash')
     parser.add_argument('--update-repo', dest='update_repo',
                         action='store_true', default=True, help='pull and rebase pond repo')
     parser.add_argument('--run', dest='targets',
@@ -159,6 +190,8 @@ def main():
         return
     if args.update_repo:
         update_repo()
+    if args.remove_all:
+        remove_all()
     create_network_if_not_exists('pond_network')
     if args.remove_volumes:
         remove_volumes()

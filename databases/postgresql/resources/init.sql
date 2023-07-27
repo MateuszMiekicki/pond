@@ -45,6 +45,7 @@ CREATE TABLE alert (
     id SERIAL,
     device_id SERIAL,
     sensor_id INTEGER,
+    alert_number INTEGER NOT NULL,
     date TIMESTAMP NOT NULL,
     description VARCHAR NOT NULL,
     priority INTEGER NOT NULL,

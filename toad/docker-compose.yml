@@ -9,8 +9,9 @@ services:
     restart: always
     build: ./docker
     ports:
-      - 1883:1883
-      - 5570:5570
-      - 5571:5571
+      - 1883:1883 # mqtt
+      - 5570:5570 # tcp
+      - 5571:5571 # requester
+      - 5572:5572 # notifier
     networks:
       - pond_network

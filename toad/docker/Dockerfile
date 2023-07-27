@@ -6,5 +6,6 @@ WORKDIR toad
 RUN mkdir -p build
 RUN cd build && conan install ..
 RUN cmake -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Debug
-RUN cmake --build build --parallel 2
+RUN cmake --build build --parallel 2 --target all
+ENV SPDLOG_LEVEL=trace
 CMD ["supervisord", "-c", "./.cicd/supervisord.conf"]
