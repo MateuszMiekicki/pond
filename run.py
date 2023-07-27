@@ -15,10 +15,10 @@ def __run_container(path: str):
     os.system(__prepare_docker_compose_command(path))
 
 
-def __kill_all_containers():
-    # https://stackoverflow.com/questions/28339469/which-one-should-i-use-docker-kill-or-docker-stop
-    print('Killing all containers...')
-    os.system('docker kill $(docker ps -q)')
+def __stop_all_containers():
+    # https://stackoverflow.com/questions/28339469/which-one-should-i-use-docker-stop-or-docker-stop
+    print('stopping all containers...')
+    os.system('docker stop $(docker ps -q)')
 
 
 def __remove_all_containers():
@@ -37,7 +37,7 @@ def __remove_all_trash():
 
 
 def remove_all():
-    __kill_all_containers()
+    __stop_all_containers()
     __remove_all_containers()
     __remove_all_images()
     __remove_all_trash()
@@ -81,7 +81,6 @@ RUNNABLE_TARGETS = {
 
 
 def __force_rebuild(path: str):
-    # docker command force clean rebuild of image
     os.system(__prepare_docker_compose_command(
         path, 'build --pull --progress=plain --no-cache'))
 
