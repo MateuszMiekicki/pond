@@ -10,7 +10,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: frog
+      POSTGRES_DB: smart-terrarium
       POSTGRES_USER: frog
       POSTGRES_PASSWORD: frog!123
     volumes:
@@ -30,9 +30,8 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: 5050
-      PGADMIN_SERVER_JSON_FILE: ./../resources/servers.json
     volumes:
-      - ./../resources/servers.json:/pgadmin4/servers.json
-      - ./../resources/pgpassfile.config:/pgadmin4/pgpassfile.config
+      - ./../resources/conf/servers.json:/pgadmin4/servers.json
+      - ./../resources/conf/pgpassfile.config:/pgadmin4/pgpassfile.config
     networks:
       - pond_network

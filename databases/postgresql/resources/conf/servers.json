@@ -1,13 +1,13 @@
 {
     "Servers": {
         "1": {
+            "Group": "Servers",
             "Name": "Smart-terrarium",
             "Host": "postgresql",
             "Port": 5432,
+            "MaintenanceDB": "smart-terrarium",
             "Username": "frog",
-            "MaintenanceDB": "frog",
-            "SSLMode": "prefer",
-            "PassFile": "./pgpassfile.config",
+            "SSLMode": "prefer"
         }
     }
 }
