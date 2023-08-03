@@ -9,6 +9,7 @@ services:
     restart: always
     ports:
       - 5432:5432
+      - 5433:5432 # solution for windows users
     environment:
       POSTGRES_DB: smart-terrarium
       POSTGRES_USER: frog
