@@ -67,3 +67,11 @@ CREATE TABLE pet_habitat (
     PRIMARY KEY (id),
     CONSTRAINT pet_fk FOREIGN KEY (pet_id) REFERENCES pet (id)
 );
+
+--- Insert data, for testing purposes
+
+INSERT INTO  pet VALUES (1, 'Pepito', 'Pepito es un perro muy juguetón');
+INSERT INTO pet values (2, 'Kuna', 'Kuna es una gata muy dormilona');
+insert into pet values (3, 'xyz');
+INSERT INTO  pet_habitat VALUES (1, 1, '{"temperature":{"min":"15","max":"18"},"humidity":{"min":"30","max":"60"}}');
+INSERT INTO  pet_habitat VALUES (2, 2, '{"temperature":{"min":"20","max":"30"},"humidity":{"min":"35","max":"40"}}');
