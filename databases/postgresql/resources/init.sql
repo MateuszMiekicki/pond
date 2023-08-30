@@ -69,9 +69,5 @@ CREATE TABLE pet_habitat (
 );
 
 --- Insert data, for testing purposes
-
-INSERT INTO  pet VALUES (1, 'Pepito', 'Pepito es un perro muy juguetón');
-INSERT INTO pet values (2, 'Kuna', 'Kuna es una gata muy dormilona');
-insert into pet values (3, 'xyz');
-INSERT INTO  pet_habitat VALUES (1, 1, '{"temperature":{"min":"15","max":"18"},"humidity":{"min":"30","max":"60"}}');
-INSERT INTO  pet_habitat VALUES (2, 2, '{"temperature":{"min":"20","max":"30"},"humidity":{"min":"35","max":"40"}}');
+INSERT INTO pet VALUES (1, 'Gekona lamparciego', 'Gekon lamparci, zwany też eublefarem tygrysim lub gekonem tygrysim, to gad z rzędu łuskonośnych z rodziny eublefarów. Prościej - gekon lamparci jest gatunkiem jaszczurki aktywnej wieczorem i nocą. Gekony zasiedlają naszą planetę od ponad 50 milionów lat. Żyją w lasach deszczowych, w górach i na pustyniach - te gady dostosowują się mistrzowsko do warunków atmosferycznych obszarów, które zasiedlają.');
+INSERT INTO pet_habitat VALUES (1, 1, '{"temperature":{"min":"25","max":"35"},"humidity":{"min":"40","max":"50"}}');
