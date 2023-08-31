@@ -69,5 +69,5 @@ CREATE TABLE pet_habitat (
 );
 
 --- Insert data, for testing purposes
-INSERT INTO pet VALUES (1, 'Gekona lamparciego', 'Gekon lamparci, zwany też eublefarem tygrysim lub gekonem tygrysim, to gad z rzędu łuskonośnych z rodziny eublefarów. Prościej - gekon lamparci jest gatunkiem jaszczurki aktywnej wieczorem i nocą. Gekony zasiedlają naszą planetę od ponad 50 milionów lat. Żyją w lasach deszczowych, w górach i na pustyniach - te gady dostosowują się mistrzowsko do warunków atmosferycznych obszarów, które zasiedlają.');
+INSERT INTO pet VALUES (1, 'Leopard gecko', 'The leopard gecko, also known as the tiger eublefar or tiger gecko, is a reptile of the scaly order eublefar. More simply, the leopard gecko is a species of lizard that is active in the evening and at night. Geckos have inhabited our planet for more than 50 million years. They live in rainforests, mountains and deserts - these reptiles adapt masterfully to the weather conditions of the areas they inhabit.');
 INSERT INTO pet_habitat VALUES (1, 1, '{"temperature":{"min":"25","max":"35"},"humidity":{"min":"40","max":"50"}}');
